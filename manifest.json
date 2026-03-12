@@ -1,0 +1,21 @@
+{
+  "name": "RTO Vehicle Info",
+  "short_name": "RTO Info",
+  "description": "गाड़ी का नंबर डालें और पूरी जानकारी पाएं",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#4158D0",
+  "theme_color": "#4158D0",
+  "icons": [
+    {
+      "src": "assets/images/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚘 RTO Insight Pro — भारत का सबसे स्मार्ट वाहन जांच</title>
+    
+    <!-- CSS File -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+<body>
+
+    <!-- ===== 3D क्रिस्टल बैकग्राउंड ===== -->
+    <div class="crystal-bg">
+        <div class="crystal crystal-1"></div>
+        <div class="crystal crystal-2"></div>
+        <div class="crystal crystal-3"></div>
+        <div class="crystal crystal-4"></div>
+        <div class="crystal crystal-5"></div>
+    </div>
+
+    <!-- ===== नेविगेशन बार ===== -->
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/images/logo.png" alt="RTO Insight Logo" class="custom-logo" id="mainLogo">
+                <span class="logo-text">RTO<span class="highlight">Insight</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active">होम</a>
+                <a href="#" class="nav-link">चालान</a>
+                <a href="#" class="nav-link">आरसी</a>
+                <a href="#" class="nav-link">सपोर्ट</a>
+            </div>
+            <div class="nav-profile">
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== हीरो सेक्शन ===== -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <span class="hero-badge">🇮🇳 भारत का विश्वसनीय साथी</span>
+            <h1 class="hero-title">
+                <span class="title-line">Intelligent Websites</span>
+                <span class="title-line gradient-text">That Think, Adapt & Convert</span>
+            </h1>
+            <p class="hero-subtitle">
+                सिर्फ एक क्लिक में पाएं गाड़ी की पूरी जानकारी — मालिक का नाम, चालान, बीमा और भी बहुत कुछ
+            </p>
+            
+            <!-- ===== सर्च बार ===== -->
+            <div class="search-container-3d">
+                <div class="search-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="vehicleNumber" class="search-input-3d" 
+                           placeholder="UP16CD1993" maxlength="10" autocomplete="off">
+                    <button class="search-btn-3d" onclick="getVehicleInfo()">
+                        <span>जांच करें</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <p class="search-hint">
+                    <i class="fas fa-info-circle"></i>
+                    जैसे: UP16CD1993, DL8CAF1234, MH02CD5678
+                </p>
+            </div>
+        </div>
+        
+        <!-- ===== 3D फ्लोटिंग कार्ड ===== -->
+        <div class="floating-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>सुरक्षित & तेज़</span>
+                </div>
+                <div class="card-back">
+                    <i class="fas fa-bolt"></i>
+                    <span>2 सेकंड में</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== लोडिंग एनिमेशन ===== -->
+    <div class="loading-container" id="loading">
+        <div class="pulse-loader">
+            <div class="pulse-dot"></div>
+            <div class="pulse-dot"></div>
+            <div class="pulse-dot"></div>
+        </div>
+        <p class="loading-text">वाहन डेटा एक्सेस किया जा रहा है...</p>
+        <p class="loading-subtext">सरकारी डेटाबेस से सत्यापन हो रहा है</p>
+    </div>
+
+    <!-- ===== रिजल्ट कार्ड ===== -->
+    <div class="result-neo-card" id="resultContainer" style="display: none;">
+        
+        <!-- हेडर विद आरसी नंबर -->
+        <div class="neo-header">
+            <div class="rc-badge">
+                <i class="fas fa-qrcode"></i>
+                <span id="rcNumber">UP16CD1993</span>
+            </div>
+            <div class="trust-badge">
+                <i class="fas fa-check-circle"></i>
+                <span>सत्यापित</span>
+            </div>
+        </div>
+
+        <!-- ओनर सेक्शन -->
+        <div class="owner-spotlight">
+            <div class="spotlight-icon">
+                <i class="fas fa-crown"></i>
+            </div>
+            <div class="spotlight-content">
+                <span class="spotlight-label">मालिक</span>
+                <span class="spotlight-name" id="ownerName">Rajesh Kumar</span>
+            </div>
+            <div class="spotlight-shine"></div>
+        </div>
+
+        <!-- डिटेल्स ग्रिड -->
+        <div class="details-matrix" id="vehicleDetails"></div>
+
+        <!-- चालान सेक्शन -->
+        <div class="challan-matrix" id="challanSection" style="display: none;">
+            <div class="matrix-header">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h4>चालान विवरण</h4>
+                <span class="header-shine"></span>
+            </div>
+            <div class="challan-grid" id="challanDetails"></div>
+        </div>
+
+        <!-- फुटर -->
+        <div class="neo-footer">
+            <i class="fas fa-database"></i>
+            <span>Parivahan सरकारी डेटाबेस से प्राप्त</span>
+        </div>
+    </div>
+
+    <!-- ===== एरर कार्ड ===== -->
+    <div class="error-neo-card" id="errorContainer" style="display: none;">
+        <div class="error-neo-icon">
+            <i class="fas fa-unlink"></i>
+        </div>
+        <h3 class="error-neo-title">डेटा उपलब्ध नहीं</h3>
+        <p class="error-neo-message" id="errorMessage">गाड़ी नंबर सही नहीं है</p>
+        <button class="error-neo-btn" onclick="resetSearch()">
+            <i class="fas fa-sync-alt"></i> पुनः प्रयास करें
+        </button>
+    </div>
+
+    <!-- ===== फीचर ग्रिड ===== -->
+    <section class="feature-grid-section">
+        <h2 class="section-heading">
+            <span class="heading-bg">स्मार्ट फीचर्स</span>
+        </h2>
+        
+        <div class="feature-3d-grid">
+            <div class="feature-3d-card">
+                <div class="feature-3d-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h4>तेज़ प्रोसेसिंग</h4>
+                <p>2 सेकंड में चालान और आरसी डिटेल</p>
+                <div class="card-glow"></div>
+            </div>
+            
+            <div class="feature-3d-card">
+                <div class="feature-3d-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h4>एन्क्रिप्टेड</h4>
+                <p>आपका डेटा पूरी तरह सुरक्षित</p>
+                <div class="card-glow"></div>
+            </div>
+            
+            <div class="feature-3d-card">
+                <div class="feature-3d-icon">
+                    <i class="fas fa-history"></i>
+                </div>
+                <h4>चालान हिस्ट्री</h4>
+                <p>पिछले 3 साल के सभी चालान</p>
+                <div class="card-glow"></div>
+            </div>
+            
+            <div class="feature-3d-card">
+                <div class="feature-3d-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h4>AI एनालिसिस</h4>
+                <p>गाड़ी की पूरी हिस्ट्री एनालिसिस</p>
+                <div class="card-glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== फुटर ===== -->
+    <footer class="premium-footer">
+        <div class="footer-gradient"></div>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-car"></i>
+                <span>RTO<span class="highlight">Insight</span></span>
+            </div>
+            <p class="footer-tagline">Made with <i class="fas fa-heart"></i> by <strong>Rahul Mishra</strong></p>
+            <p class="footer-copyright">© 2026 RTO Insight Pro. सभी अधिकार सुरक्षित</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+            .then(() => console.log('✅ PWA Ready!'))
+            .catch(err => console.log('❌ Error:', err));
+        }
+    </script>
+</body>
+</html>
